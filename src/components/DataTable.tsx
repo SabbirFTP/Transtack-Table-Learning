@@ -11,15 +11,10 @@ type Props<T> = {
   columns: any
 }
 
-export default function DataTable<T>({
-  data,
-  columns,
-}: Props<T>) {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  })
+export default function DataTable<T>({ data, columns, }: Props<T>) {
+  const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel(), })
+
+  console.log(table)
 
   return (
     <div className="overflow-x-auto">
@@ -31,8 +26,8 @@ export default function DataTable<T>({
         </thead>
 
         <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id} row={row} />
+          {table.getRowModel().rows.map((row, index) => (
+            <TableRow key={row.id} row={row} index={index} />
           ))}
         </tbody>
       </table>
